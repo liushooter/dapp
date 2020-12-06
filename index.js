@@ -122,7 +122,7 @@ $(document).ready(async function() {
     try {
       provider = await web3Modal.connect()
     } catch (e) {
-      console.log("Could not get a wallet connection", e)
+      console.error("Could not get a wallet connection", e)
       return
     }
 
@@ -146,15 +146,6 @@ $(document).ready(async function() {
     $("#ethBalance").html(humanFriendlyBalance + " ETH")
 
     fetchList()
-
-    // Subscribe to accounts change
-    provider.on("accountsChanged", (accounts) => {})
-
-    // Subscribe to chainId change
-    provider.on("chainChanged", (chainId) => {})
-
-    // Subscribe to networkId change
-    provider.on("networkChanged", (networkId) => {})
 
   })
 
