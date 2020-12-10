@@ -2,6 +2,10 @@
 
 [dapp source code](https://github.com/liushooter/dapp)
 
+## 欢迎关注公众号
+
+<img src="./wx.jpg" width="300">
+
 ## 工具
 
 Ethereum：https://ethereum.org/
@@ -19,7 +23,3 @@ eth api提供者：https://infura.io/
 web3js文档： https://web3js.readthedocs.io/en/v1.3.0/
 
 eth区块浏览器：https://ropsten.etherscan.io/address/0xe24cE7a12bCC59c78fE310afaDa82bD6f7848aEf
-
-## 欢迎关注公众号
-
-<img src="./wx.jpg" width="300">
