@@ -49,7 +49,7 @@ async function fetchList() {
   var len = records.length - 1
   var contents = ""
 
-  for(var i =len; i>=0; i--){
+  for(var i =len; i>=0; i--){ // 逆序循环
     var item = records[i]
     var text = await contract.methods.get(item).call({
       from: fromAddr
@@ -63,6 +63,7 @@ async function fetchList() {
         <div class="list__record--year">${date.getFullYear()}</div>
         <span>${dateStr}</span>
         <div>${text}</div>
+
       </div>`
   }
 
@@ -95,7 +96,7 @@ function init() {
 }
 
 
-$(document).ready(async function() {
+$(document).ready(async function() { // 页面加载成功后
 
   init()
 
@@ -117,6 +118,7 @@ $(document).ready(async function() {
   })
 
   $("#connectBtn").click(async function() {
+
     console.log("Opening a dialog", web3Modal)
 
     try {
@@ -135,6 +137,7 @@ $(document).ready(async function() {
     const accounts = await web3.eth.getAccounts()
     fromAddr = accounts[0]
 
+    console.log(chainData)
     $("#ethAddr").html(fromAddr)
     $("#ethNetwork").html(chainData.name)
 
