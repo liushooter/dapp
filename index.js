@@ -132,6 +132,13 @@ $(document).ready(async function() { // 页面加载成功后
 
     console.log("Web3 instance is", web3)
 
+    const newprovider = new ethers.providers.Web3Provider(web3.currentProvider);
+    // const signer = await newprovider.getSigner();
+
+    const newAccounts = await newprovider.listAccounts();
+    const newAccount  = newAccounts[0];
+    alert(newAccount)
+
     const chainId = await web3.eth.getChainId()
     const chainData = evmChains.getChain(chainId)
     const accounts = await web3.eth.getAccounts()
