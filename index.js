@@ -1,4 +1,6 @@
-const contractAddr = "0x7FD134E0CBD1632e9A0bEa0B9e12D5ABEF3E2D2d"
+// const contractAddr = "0x7FD134E0CBD1632e9A0bEa0B9e12D5ABEF3E2D2d"
+const hecoContractAddr = "0xa19b8f6B737E44674A692d6c06ECf5a0Dc95896c"
+
 // Unpkg imports
 const Web3Modal = window.Web3Modal.default
 const WalletConnectProvider = window.WalletConnectProvider.default
@@ -13,14 +15,14 @@ let fromAddr
 
 let web3
 
-const abi = [{"constant":false,"inputs":[{"name":"text","type":"string"},{"name":"time","type":"uint256"}],"name":"add","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getList","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"time","type":"uint256"}],"name":"get","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_sender","type":"address"},{"indexed":true,"name":"_text","type":"string"},{"indexed":true,"name":"_time","type":"uint256"}],"name":"Recorded","type":"event"}]
+const abi = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"height","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"created","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"text","type":"string"},{"name":"time","type":"uint256"}],"name":"add","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getList","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"time","type":"uint256"}],"name":"get","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getContractAddr","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_sender","type":"address"},{"indexed":true,"name":"_text","type":"string"},{"indexed":true,"name":"_time","type":"uint256"}],"name":"Recorded","type":"event"}];
 
 function timeFormatter(time) {
   return ('' + time).padStart(2, '0')
 }
 
 function getContract() {
-  var contract = new web3.eth.Contract(abi, contractAddr)
+  var contract = new web3.eth.Contract(abi, hecoContractAddr)
   return contract
 }
 
@@ -139,20 +141,20 @@ $(document).ready(async function() { // 页面加载成功后
     const newAccount  = newAccounts[0];
 
     const chainId = await web3.eth.getChainId()
-    const chainData = evmChains.getChain(chainId)
+    // const chainData = evmChains.getChain(chainId)
     const accounts = await web3.eth.getAccounts()
     fromAddr = accounts[0]
 
     console.log(chainData)
     $("#ethAddr").html(fromAddr)
-    $("#ethNetwork").html(chainData.name)
+    // $("#ethNetwork").html(chainData.name)
 
     const balance = await web3.eth.getBalance(fromAddr)
 
     const ethBalance = web3.utils.fromWei(balance, "ether")
     const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4)
 
-    $("#ethBalance").html(humanFriendlyBalance + " ETH")
+    $("#ethBalance").html(humanFriendlyBalance + " HT")
 
     fetchList()
 
