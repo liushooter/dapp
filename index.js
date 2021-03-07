@@ -29,7 +29,7 @@ function viewTime() {
 
   $("#currTime").val(+time)
   $(".add__time--year").html(time.getFullYear())
-  $(".add__time--month").html(time.getMonth() + 1)
+  $(".add__time--month").html(timeFormatter(time.getMonth() + 1))
   $(".add__time--day").html(timeFormatter(time.getDate()))
 
   $(".add__time--hour").html(timeFormatter(time.getHours()))
@@ -57,7 +57,7 @@ async function fetchList() {
 
     var date = new Date(parseInt(item))
 
-    var dateStr=`${date.getFullYear()}-${date.getMonth() + 1}-${timeFormatter(date.getDate())} ${timeFormatter(date.getHours())}:${timeFormatter(date.getMinutes())}`
+    var dateStr=`${date.getFullYear()}-${timeFormatter(date.getMonth() + 1)}-${timeFormatter(date.getDate())} ${timeFormatter(date.getHours())}:${timeFormatter(date.getMinutes())}`
 
     contents += `<div class="list__record--container">
         <div class="list__record--year">${date.getFullYear()}</div>
@@ -137,7 +137,6 @@ $(document).ready(async function() { // 页面加载成功后
 
     const newAccounts = await newprovider.listAccounts();
     const newAccount  = newAccounts[0];
-    alert(newAccount)
 
     const chainId = await web3.eth.getChainId()
     const chainData = evmChains.getChain(chainId)
