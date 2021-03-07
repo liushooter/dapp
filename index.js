@@ -133,21 +133,15 @@ $(document).ready(async function() { // 页面加载成功后
     web3 = new Web3(provider)
 
     console.log("Web3 instance is", web3)
-
-    const newprovider = new ethers.providers.Web3Provider(web3.currentProvider);
-    // const signer = await newprovider.getSigner();
-
-    const newAccounts = await newprovider.listAccounts();
-    const newAccount  = newAccounts[0];
-
     const chainId = await web3.eth.getChainId()
+
     // const chainData = evmChains.getChain(chainId)
+    // $("#ethNetwork").html(chainData.name)
+
     const accounts = await web3.eth.getAccounts()
     fromAddr = accounts[0]
 
-    console.log(chainData)
     $("#ethAddr").html(fromAddr)
-    // $("#ethNetwork").html(chainData.name)
 
     const balance = await web3.eth.getBalance(fromAddr)
 
